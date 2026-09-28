@@ -6,6 +6,7 @@
 
 🔗 **[Open Vendor Invoice Intelligence Dashboard](https://vendor-invoice-intelligence-system-ml-project-huelcseazip3qrt4.streamlit.app/)**
 
+---
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue)
 ![SQL](https://img.shields.io/badge/SQL-SQLite-orange)
@@ -31,7 +32,7 @@
 - [Freight Cost Prediction](#-freight-cost-prediction)
 - [Invoice Risk Flagging](#-invoice-risk-flagging)
 - [Model Evaluation](#-model-evaluation)
-- - [Live Demo](#-live-demo)
+- [Live Demo](#-live-demo)
 - [Model Inference](#-model-inference)
 - [Streamlit Application](#-streamlit-application)
 - [Project Structure](#-project-structure)
