@@ -1,49 +1,138 @@
-# 🚀 Vendor Invoice Intelligence System
-### Freight Cost Prediction & Invoice Risk Flagging
+# 🧾 Vendor Invoice Intelligence System
+### AI-Powered Freight Cost Prediction & Invoice Risk Flagging
 
-An end-to-end machine learning project that combines **SQL, Python, statistical analysis, machine learning, and Streamlit** to analyze vendor invoices, predict expected freight costs, and identify potentially abnormal invoices that may require further review.
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Machine Learning](https://img.shields.io/badge/ML-Scikit--Learn-orange)
+![Streamlit](https://img.shields.io/badge/Frontend-Streamlit-red)
+![Database](https://img.shields.io/badge/Database-SQLite-green)
+![Status](https://img.shields.io/badge/Status-Completed-success)
+
+> An end-to-end Machine Learning system that helps finance teams predict freight costs and automatically flag risky vendor invoices for manual review.
 
 ---
 
-## 📌 Project Overview
+## 📌 Table of Contents
+- [Project Overview](#-project-overview)
+- [Key Features](#-key-features)
+- [Business Objectives](#-business-objectives)
+- [Data Sources](#️-data-sources)
+- [Exploratory Data Analysis](#-exploratory-data-analysis)
+- [Models Used](#-models-used)
+- [Evaluation Metrics](#-evaluation-metrics)
+- [ML Workflow](#-machine-learning-workflow)
+- [Streamlit Application](#️-streamlit-application)
+- [Project Structure](#-project-structure)
+- [Tech Stack](#️-tech-stack)
+- [How to Run](#️-how-to-run-this-project)
+- [Results](#-results--insights)
+- [Future Improvements](#-future-improvements)
+- [Author](#-author--contact)
 
-Vendor invoice processing involves analyzing financial, purchasing, and operational information to determine whether invoice amounts are reasonable and whether unusual transactions require additional attention.
+---
 
-This project develops an end-to-end **Vendor Invoice Intelligence System** with two machine learning solutions:
+## 📖 Project Overview
+
+This project implements a **complete end-to-end Machine Learning pipeline** to solve two critical finance problems:
+
+1.  **Freight Cost Prediction (Regression):** Accurately forecasts the expected freight cost for any vendor invoice.
+2.  **Invoice Risk Flagging (Classification):** Automatically detects invoices with unusual financial or operational patterns that require manual approval.
+
+The system extracts data from a relational SQLite database, performs EDA and statistical testing, trains and evaluates ML models, and serves predictions through an interactive **Streamlit** web application.
+
+---
+
+## ✨ Key Features
+- 📦 **Freight Forecasting:** Predicts freight cost using invoice value & quantity
+- 🚩 **Smart Flagging:** Flags high-risk invoices using Random Forest + GridSearchCV
+- 📊 **Statistical Validation:** Uses t-tests to validate difference between flagged vs normal invoices
+- 🔍 **Interactive UI:** Real-time prediction with Streamlit
+- 💾 **Production Ready:** Model persistence with Joblib & clean inference pipeline
+
+---
+
+## 🎯 Business Objectives
 
 ### 1. Freight Cost Prediction
+**Objective:** Predict the expected freight cost associated with a vendor invoice.
 
-A regression-based machine learning pipeline that predicts the expected freight cost associated with a vendor invoice.
+**Business Impact:**
+- Improves budgeting and landed cost estimation
+- Supports procurement planning and vendor negotiation
+- Helps identify abnormal freight charges early
 
 ### 2. Invoice Risk Flagging
+**Objective:** Identify invoices with unusual patterns and flag them for additional review.
 
-A classification-based machine learning pipeline that identifies invoices with potentially abnormal financial or operational patterns and flags them for further review.
+**Business Impact:**
+- Reduces manual invoice verification workload
+- Prevents financial leakage in large/complex invoices
+- Increases audit efficiency and operational control
 
-The project follows a complete machine learning workflow:
+---
 
-```text
-Business Problem
-      ↓
-SQLite Database
-      ↓
-SQL Data Extraction
-      ↓
-Data Cleaning & Preprocessing
-      ↓
-Exploratory Data Analysis
-      ↓
-Statistical Analysis
-      ↓
-Feature Engineering
-      ↓
-Machine Learning
-      ↓
-Model Evaluation
-      ↓
-Hyperparameter Tuning
-      ↓
-Model Saving
-      ↓
-Inference
-      ↓
-Streamlit Application
+## 🗄️ Data Sources
+
+Data is stored in `inventory.db` (SQLite) and queried using SQL aggregations.
+
+| Table | Description |
+| :--- | :--- |
+| `vendor_invoice` | Invoice-level financial and timing data |
+| `purchases` | Item-level purchase details |
+| `purchase_prices` | Reference purchase prices |
+| `begin_inventory` | Beginning inventory snapshot |
+| `end_inventory` | Ending inventory snapshot |
+
+> Note: `inventory.db` is excluded from GitHub due to large file size and is stored locally.
+
+---
+
+## 📊 Exploratory Data Analysis
+
+EDA was focused on business-driven questions:
+
+- Does freight scale linearly with invoice value?
+- Do flagged invoices have higher financial exposure?
+- Does receiving delay correlate with invoice risk?
+- How do total item quantity and dollars vary between flagged vs normal?
+
+**Tools:** Pandas, Matplotlib, Seaborn, Statistical t-tests
+
+### 📈 Statistical Analysis
+Independent two-sample t-tests were performed to confirm significant differences between flagged and non-flagged invoices for:
+- `invoice_quantity`, `invoice_dollars`, `Freight`
+- `days_from_PO_to_invoice`, `days_to_pay`
+- `total_item_quantity`, `total_item_dollars`
+
+---
+
+## 🤖 Models Used
+
+### 🚚 Freight Prediction (Regression)
+- **Baseline:** Linear Regression
+- **Intermediate:** Decision Tree Regressor
+- **Final Model:** Random Forest Regressor
+
+### 🚨 Invoice Flagging (Classification)
+- **Model:** Random Forest Classifier
+- **Tuning:** GridSearchCV with F1-Score (to handle class imbalance)
+- **Features:** `invoice_quantity`, `invoice_dollars`, `Freight`, `total_item_quantity`, `total_item_dollars`
+
+---
+
+## 📏 Evaluation Metrics
+
+**Regression (Freight Prediction)**
+- MAE - Mean Absolute Error
+- RMSE - Root Mean Squared Error
+- R² Score
+
+**Classification (Invoice Flagging)**
+- Accuracy, Precision, Recall, F1-Score
+- Classification Report
+- Feature Importance Analysis
+
+---
+
+## 🔬 Machine Learning Workflow
+
+**Freight Prediction Pipeline:**
