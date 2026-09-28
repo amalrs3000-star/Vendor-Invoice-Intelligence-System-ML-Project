@@ -136,3 +136,55 @@ Independent two-sample t-tests were performed to confirm significant differences
 ## 🔬 Machine Learning Workflow
 
 **Freight Prediction Pipeline:**
+
+
+
+---
+
+## 🖥️ Streamlit Application
+
+An interactive web app with 2 modules:
+
+#### 1. Freight Cost Prediction
+Enter `Quantity` and `Invoice Dollars` → Get predicted freight cost.
+
+#### 2. Invoice Risk Detection
+Enter `Invoice Quantity, Dollars, Freight, Total Quantity, Total Dollars` → Get `MANUAL APPROVAL REQUIRED` or `SAFE for Auto-Approval`.
+
+**Screenshots:**
+- `images/app_home.png` - Home Page
+- `images/freight_prediction.png` - Freight Module
+- `images/invoice_risk_detection.png` - Risk Flagging Module
+
+---
+
+## 📁 Project Structure
+
+---
+
+## 🛠️ Tech Stack
+
+**Languages:** Python, SQL
+**Data:** Pandas, NumPy, SQLite
+**ML:** Scikit-Learn, Random Forest, GridSearchCV
+**Visualization:** Matplotlib
+**Deployment:** Streamlit, Joblib
+**Tools:** Jupyter, Git & GitHub
+
+---
+
+## ▶️ How to Run This Project
+
+**1. Clone the Repository**
+```bash
+git clone https://github.com/amalrs3000-star/Machine-Learning-Project-1-Vendor-Invoice-Intelligence-System.git
+cd Machine-Learning-Project-1-Vendor-Invoice-Intelligence-System
+pip install -r requirements.txt
+# or
+pip install pandas numpy scikit-learn matplotlib joblib streamlit
+python Freight_cost_prediction/train.py
+python invoice_flagging/train.py
+python inference/predict_freight.py
+python inference/predict_invoice_flag.py
+streamlit run app.py
+
