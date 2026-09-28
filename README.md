@@ -792,9 +792,9 @@ This project provided practical experience with:
 
 ---
 
-# 👨‍💻 Author & Contact
+## 👨‍💻 Author & Contact
 
-## Amal.RS
+### Amal.RS
 
 **B.Tech Artificial Intelligence & Data Science**
 
